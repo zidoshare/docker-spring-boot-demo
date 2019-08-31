@@ -37,6 +37,7 @@
     </dependencies>
 
     <build>
+        <finalName>movie</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -47,13 +48,13 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName> #镜像名
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory> #jar包所在目录，缺省为target
-                            <include>${project.build.finalName}.jar</include> #jar包名，缺省为 ${project.artifactId}-${project.version}
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
                 </configuration>

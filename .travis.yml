@@ -1,0 +1,16 @@
+language: java
+jdk: openjdk8
+script:
+  - ./mvnw clean package
+  - ./mvnw docker:build
+after_script:
+  - cd ./target/docker
+  - git init
+  - git config user.name "${U_NAME}"
+  - git config user.email "${U_EMAIL}"
+  - git add .
+  - git commit -m "Update"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
+branches:
+  only:
+    - master
